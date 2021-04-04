@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
         return 2;
     }    
 
-    inet_ntop(servinfo->ai_family, &((struct sockaddr_in*)servinfo->ai_addr)->sin_addr,s, sizeof s);
+    inet_ntop(servinfo->ai_family, &((struct sockaddr_in*)servinfo->ai_addr)->sin_addr, s, sizeof s);
     printf("client: connecting to %s\n", s);
 
     freeaddrinfo(servinfo);

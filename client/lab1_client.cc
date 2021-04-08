@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     freeaddrinfo(servinfo);
 
     fgets(buf, 100, stdin);
-    while (strcmp(buf, "quit")) {
+    while (strcmp(buf, "quit\n")) {
         if (send(sockfd, buf, strlen(buf), 0) == -1) {
             perror("send");
             close(sockfd);

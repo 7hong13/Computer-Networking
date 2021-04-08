@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     freeaddrinfo(servinfo);
 
     fgets(buf, 100, stdin);
-    while (strcmp(buf, "quit\n")) {
+    while (strcmp(buf, "quit")) {
         if (send(sockfd, buf, strlen(buf), 0) == -1) {
             perror("send");
             close(sockfd);
@@ -62,8 +62,7 @@ int main(int argc, char *argv[]) {
             close(sockfd);
             exit(1);
         }
-        
-        buf[numbytes] = '\0';
+        buf[numbytes - 1] = '\0';
         printf("client: received '%s' \n", buf);
         fgets(buf, 100, stdin);
     }

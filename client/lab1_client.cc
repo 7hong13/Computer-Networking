@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
             close(sockfd);
             exit(1);
         }
-        buf[numbytes - 1] = '\0';
+        buf[numbytes] = '\0';
         printf("client: received '%s' \n", buf);
         fgets(buf, 100, stdin);
     }

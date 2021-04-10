@@ -65,6 +65,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    FD_ZERO(&master);
     FD_SET(sockfd, &master);
     fdmax = sockfd;
 

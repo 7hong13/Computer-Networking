@@ -30,7 +30,6 @@ int main(int argc, char* argv[]) {
     int addr_len = strlen(argv[1]) - 7; //http:// 제외한주소 길이
     int content_length = -1;
     char header_checker[5]; //header 끝나는 지점 확인 위한 스트링
-    char status[MAX_DATA_SIZE] = "";
 
     int sockfd, numbytes = 1;
     struct addrinfo hints, *servinfo;
@@ -120,15 +119,13 @@ int main(int argc, char* argv[]) {
     while (!header_processed) {
         numbytes = recv(sockfd, buf, MAX_DATA_SIZE - 1, 0);
         buf[numbytes] = '\0';
-        strcpy(read_buf, buf);
         if (!status_processed) {
-            int len = strlen(read_buf);
+            strcpy(read_buf, buf);
             ptr_parsing = strtok(read_buf, "\r");
-            strcat(status, ptr_parsing);
-            if (strlen(ptr_parsing) == len) continue; //status code가 다 안 받아짐
-            printf("%s\n", status);
+            printf("%s\n", ptr_parsing);
             status_processed = true;
         }
+
         int data_start = 0;
         for (int idx = 0; buf[idx]; idx++) {
             memcpy(header_checker, &buf[idx], 4);
@@ -167,7 +164,6 @@ int main(int argc, char* argv[]) {
     }
 
     close(sockfd);
-
     printf("%d bytes written to 20170172.out\n", content_length);
     fclose(fp);
     return 0;

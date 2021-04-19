@@ -48,14 +48,18 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
+    //http:// 제외한 나머지 주소 addr_parsing에 저장
     memcpy(addr_parsing, &argv[1][7], strlen(argv[1]) - 7);
     ptr_parsing = strstr(addr_parsing, ":");
+    //default port
     if (ptr_parsing == NULL) {
         ptr_parsing = strstr(addr_parsing, "/");
+        //default path
         if (ptr_parsing == NULL) {
             strcpy(hostname, addr_parsing);
         }
         else {
+            //path 추가
             int path_start = 0;
             for (int idx = 0; addr_parsing[idx] != '/'; idx++) {
                 hostname[idx] = addr_parsing[idx];
@@ -68,12 +72,13 @@ int main(int argc, char* argv[]) {
         }
     }
     else {
+        //포트 지정
         ptr_parsing = strtok(addr_parsing, ":");
         strcpy(hostname, ptr_parsing);
         ptr_parsing = strtok(NULL, ":");
         char* path_ptr;
         port = strtol(ptr_parsing, &path_ptr, 10);
-        if (strlen(path_ptr) > 0) strcpy(path, path_ptr); //path가 명시된 경우
+        if (strlen(path_ptr) > 0) strcpy(path, path_ptr); //path 추가
     }
     
     memset(&hints, 0, sizeof hints);
@@ -119,7 +124,7 @@ int main(int argc, char* argv[]) {
     while (!header_processed) {
         numbytes = recv(sockfd, buf, MAX_DATA_SIZE - 1, 0);
         buf[numbytes] = '\0';
-        if (!status_processed) {
+        if (!status_processed) { //status code 출력
             strcpy(read_buf, buf);
             ptr_parsing = strtok(read_buf, "\r");
             printf("%s\n", ptr_parsing);

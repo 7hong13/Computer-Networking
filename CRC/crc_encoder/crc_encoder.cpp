@@ -28,11 +28,11 @@ void exitErr(int err) {
 string getMod(string dataword, string generator) {
     int gen_len = generator.length();
     int lastIdx = gen_len;
-    string dividend = dataword.substr(0, gen_len);
     string rem = "";
     for (int iter = 0; iter < gen_len - 1; iter++) {
         dataword += '0';
     }
+    string dividend = dataword.substr(0, gen_len);
 
     int len = dataword.length();
     while (lastIdx < len) {
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
         dec_to_binary = bitset<8>(int(input)).to_string();
         if (dataword_size == 8) {
             dataword = dec_to_binary;
-            codeword = dataword + getMod(dataword, argv[3]);
+            codeword += dataword + getMod(dataword, argv[3]);
         }
         else if (dataword_size == 4) {
             for (int start = 0; start < 5; start += 4) {

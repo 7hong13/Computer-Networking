@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <bitset>
 #include <string>
-#include <algorithm>
 #define ARGS_CNT_ERR 0
 #define INPUT_ERR 1
 #define OUTPUT_ERR 2
@@ -84,11 +83,12 @@ int main(int argc, char* argv[]) {
     }
 
     char input; 
-    string dataword, codeword;
+    string dataword, codeword, dec_to_binary;
     fscanf(input_fp, "%c", &input);
+    output_fp = fopen(argv[2], "w");
+    
     while (!feof(input_fp)) {
-        string dec_to_binary = bitset<8>(int(input)).to_string();
-        output_fp = fopen(argv[2], "w");
+        dec_to_binary = bitset<8>(int(input)).to_string();
         if (dataword_size == 8) {
             dataword = dec_to_binary;
             codeword = dataword + getMod(dataword, argv[3]);
@@ -101,6 +101,7 @@ int main(int argc, char* argv[]) {
         }
         fscanf(input_fp, "%c", &input);
     }
+
     int padding = 0;
     if (codeword.length() % 8 != 0) {
         padding = 8 - codeword.length() % 8;

@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
         exitErr(INPUT_ERR);
     }
 
-    output_fp = fopen(argv[2], "r"); //output file open
+    output_fp = fopen(argv[2], "w"); //output file open
     if (output_fp == NULL) {
         exitErr(OUTPUT_ERR);
     }
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
     char input; 
     string dataword, codeword, dec_to_binary;
     fscanf(input_fp, "%c", &input);
-    output_fp = fopen(argv[2], "w");
+    //output_fp = fopen(argv[2], "w");
     
     while (!feof(input_fp)) {
         dec_to_binary = bitset<8>(int(input)).to_string();

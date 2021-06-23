@@ -79,12 +79,12 @@ int main(int argc, char* argv[]) {
         exitErr(INPUT_ERR);
     }
 
-    output_fp = fopen(argv[2], "r"); //output file open
+    output_fp = fopen(argv[2], "w"); //output file open
     if (output_fp == NULL) {
         exitErr(OUTPUT_ERR);
     }
 
-    result_fp = fopen(argv[3], "r"); //result file open
+    result_fp = fopen(argv[3], "w"); //result file open
     if (result_fp == NULL) {
         exitErr(RESULT_ERR);
     }
@@ -105,7 +105,6 @@ int main(int argc, char* argv[]) {
     int gen_len = strlen(argv[4]);
     int codeword_len = dataword_size + gen_len - 1;
     int dataword_to_dec;
-    output_fp = fopen(argv[2], "w");
 
     fscanf(input_fp, "%c", &input);
     while (!feof(input_fp)) {
@@ -124,7 +123,6 @@ int main(int argc, char* argv[]) {
         dataword = "";
     }
 
-    result_fp = fopen(argv[3], "w");
     fprintf(result_fp, "%d %d", codeword_cnt, codeword_err);
 
     fclose(input_fp);

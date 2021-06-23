@@ -78,14 +78,13 @@ int main(int argc, char* argv[]) {
         exitErr(OUTPUT_ERR);
     }
 
-    if (dataword_size!= 4 && dataword_size != 8) {
+    if (dataword_size != 4 && dataword_size != 8) {
         exitErr(DATAWORD_SIZE_ERR);
     }
 
     char input; 
     string dataword, codeword, dec_to_binary;
     fscanf(input_fp, "%c", &input);
-    //output_fp = fopen(argv[2], "w");
     
     while (!feof(input_fp)) {
         dec_to_binary = bitset<8>(int(input)).to_string();

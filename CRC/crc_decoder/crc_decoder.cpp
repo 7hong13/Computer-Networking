@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
         exitErr(RESULT_ERR);
     }
 
-    if (dataword_size!= 4 && dataword_size != 8) {
+    if (dataword_size != 4 && dataword_size != 8) {
         exitErr(DATAWORD_SIZE_ERR);
     }
 

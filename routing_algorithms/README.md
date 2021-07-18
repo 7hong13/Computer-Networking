@@ -11,7 +11,7 @@ Routing algorithms implementation in C
 <br>
 
 ## Link State
-- location: ~~linkstate/linkstate.cc~~ (to be revised)
+- location: linkstate/linkstate.cc
 - execution: ./linkstate topologyfile messagesfile changesfile
 <br> (e.g. ./linkstate topology.txt messages.txt changes.txt)
 <br>
